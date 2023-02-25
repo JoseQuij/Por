@@ -13,21 +13,26 @@ const HeroSection = () => {
         myref.current.value = ""
     }
     return (
-        <div className="py-40">
-            <div>
-                <h1>Hello Welcome to my App</h1>
+        <div className="flex flex-col items-center box-border p-0 m-0 py-36">
+            <div className="">
+                <h1 className=" font-semibold text-3xl pb-4">Hello Welcome to my App</h1>
             </div>
-            <form onSubmit={submitted}>
-                <input ref={myref} className="border border-slate-800" type="text"/>
-                <button type="submit">+</button>
+            <form className="items-center flex align-middle " onSubmit={submitted}>
+                <input ref={myref} className="border mx-3 border-slate-800" type="text"/>
+                <button className=" bg-slate-400 rounded-full w-8 text-center items-center justify-center align-middle h-auto cursor-pointer text-2xl " type="submit">+</button>
             </form>
-            <div>
+            <ul className=" border-slate-500 rounded w-2/3 h-auto">
                 {todos.map(todo => (
-                    <p>{todo}</p>
+                    <ol>{todo}</ol>
                 ))}
-            </div>
+            </ul>
+            <form>
+                <input type="file"/>
+            </form>
         </div>
     )
 }
 
 export default HeroSection
+
+

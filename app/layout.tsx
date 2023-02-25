@@ -11,10 +11,9 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className="flex">
+      <body>
         <ThemeProvider enableSystem={true} attribute="class">
-          <NavBar/>
-          
+          <NavBar  />
           {children}
         </ThemeProvider>
         </body>

@@ -66,66 +66,48 @@
 // }
 
 // export default NavBar
+"use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useTheme } from 'next-themes'
-import { RiMoonFill, RiSunLine } from 'react-icons/ri'
 import { IoMdClose, IoMdMenu } from 'react-icons/io'
+import { RiSunLine, RiMoonFill } from 'react-icons/ri'
 import Link from 'next/link'
 
-interface navItem {
+ interface navItem {
     label: string,
     page: string,
-}
+ }
 
-
-const Nav_Items: Array<navItem> = [
+ const Nav_Items:  Array<navItem> =[
     {
         label: "Home",
-        page: "home"
+        page: "",
     },
     {
-        label: "Profile",
-        page: "profile"
+        label: "Project",
+        page: "project",
     },
     {
         label: "About",
         page: "about"
     }
-]
-
+ ]
 const NavBar = () => {
-
     const [ navBar, setNavBar ] = useState(false)
     const { theme, systemTheme, setTheme } = useTheme()
-    const currentTheme = theme === "system" ? systemTheme : theme 
-
+    const currentTheme = theme === "system" ? systemTheme : theme
   return (
-    <header className='w-full mx-auto py-7 px-4 sm:px-20 fixed top-0 z-50 shadow  dark:border-b-2 dark:border-neutral-100'>
-        <div>
+    <header className='w-full px-3 py-3 z-10 mx-auto fixed top-0 border-b border-b-slate-300 shadow dark:bg-slate-900 dark:border-slate-600'>
+        <div className='flex justify-between'>
             <div>
-                <div>
-                    <h2>Hello there, I'm Jose</h2>
-                </div>
-                <button className=' p-2 text-gray-700 rounded-md outline-none md:hidden focus:border-gray-400 focus:border' onClick={() => setNavBar(!navBar)}>
-                    { navBar ? (<IoMdClose size={30}/>) : (<IoMdMenu size={30}/>) }
-                </button>
+                <h2>Jose Quijije</h2>
             </div>
             <div>
-                <div>
-                    <div className={`flex-1 mx-4 md:pb-0 md:mt-0 md:block ${navBar ? "block" : "hidden" }`}>
-                        <div className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-                            {Nav_Items.map((item, idx) => {
-                                return (
-                                    <Link href={`${item.page}`} key={idx}>{item.label}</Link>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    {
-                            currentTheme === "dark" ? (<button onClick={() => setTheme("light")}><RiSunLine/></button>) : (<button onClick={() => setTheme('dark')}><RiMoonFill/></button>)       
-                        }
+            <button onClick={() => setNavBar(!navBar)} className="md:hidden">{navBar ? (<IoMdClose/>) : (<IoMdMenu/>)}</button>
+                <div className={` space-x-3  md:block ${navBar ? "block" : "hidden"} `}>{Nav_Items.map((item, idx) => {return (<Link href={item.page}>{item.label}</Link>)})}
                 </div>
+                <div className='block'>{currentTheme === "dark" ? (<button onClick={() => setTheme("light")}><RiMoonFill/></button>) : (<button onClick={() => setTheme("dark")}><RiSunLine/></button>)}</div>
             </div>
         </div>
     </header>
