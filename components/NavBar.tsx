@@ -91,6 +91,10 @@ import Link from 'next/link'
     {
         label: "About",
         page: "about"
+    },
+    {
+        label: "CountriesApp",
+        page: "countries"
     }
  ]
 const NavBar = () => {
