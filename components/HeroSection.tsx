@@ -35,6 +35,7 @@
 
 // export default HeroSection
 import React, { useState, useRef } from 'react'
+import Peoples from './peoples'
 
 const HeroSection = () => {
     const inputref = useRef()
@@ -48,7 +49,7 @@ const HeroSection = () => {
         inputref.current.value = ""
     }
     function changePic () {
-        imageRef.src = URL.createObjectURL(inputInfo.files)
+        imageRef.current.src = URL.createObjectURL(inputInfo.current.files)
     }
    return (
     <div className='py-36 gap-4 flex align-middle items-center flex-col'>
@@ -66,7 +67,8 @@ const HeroSection = () => {
                 </ol>
             ))}
         </div>
-        <img src='#' id='imageup' ref={imageRef} />
+        <Peoples />
+        <img src='#' id='imageup' className='w-52 h-44' ref={imageRef} />
         <label className='cursor-pointer'>
             <input type='file' accept='image.jpeg, image/pjg, image/png' ref={inputInfo} className=' hidden' onChange={changePic} />
             Change Your Picture
