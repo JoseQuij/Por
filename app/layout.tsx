@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body className="bg-fill justify-center bg-[url('/bg-wallpaper-comp.jpg')] bg-fixed bg-no-repeat">
+      <body>
         <ThemeProvider enableSystem={true} attribute="class">
           <NavBar  />
           {children}

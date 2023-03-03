@@ -34,8 +34,10 @@
 // }
 
 // export default HeroSection
+'use client'
 import React, { useState, useRef } from 'react'
 import Peoples from './peoples'
+import Image from 'next/image'
 
 const HeroSection = () => {
     const inputref = useRef()

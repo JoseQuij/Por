@@ -12,15 +12,15 @@
 // const Nav_Items: Array<navItem> = [
 //     {
 //         label: 'Home',
-//         page: 'home'
+//         page: ''
 //     },
 //     {
 //         label: 'About',
 //         page: 'about'
 //     },
 //     {
-//         label: 'Profile',
-//         page: 'profile'
+//         label: 'Project',
+//         page: 'project'
 //     },
 // ]
 // const NavBar = () => {
@@ -48,7 +48,7 @@
 //                         <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
 //                                 { Nav_Items.map((item,idx) => {
 //                                     return ( 
-//                                         <Link className='block lg:inline-block  hover:text-neutral-500 dark:text-white' href={`${item.label}`} key={idx}>{item.label}</Link>
+//                                         <Link className='block lg:inline-block  hover:text-neutral-500 dark:text-white' href={`${item.page}`} key={idx}>{item.label}</Link>
 //                                     )
 //                                 })}
 //                                 { currentTheme === "dark" ? (
@@ -68,50 +68,56 @@
 // export default NavBar
 "use client"
 
-import React, { useState } from 'react'
-import { useTheme } from 'next-themes'
+import React, { useState} from 'react'
 import { IoMdClose, IoMdMenu } from 'react-icons/io'
 import { RiSunLine, RiMoonFill } from 'react-icons/ri'
+import { useTheme } from 'next-themes'
 import Link from 'next/link'
 
- interface navItem {
-    label: string,
-    page: string,
- }
 
- const Nav_Items:  Array<navItem> =[
+interface nAvItems{
+    page: string,
+    label: string
+}
+
+const NAv_Items: Array<nAvItems> = [
     {
-        label: "Home",
-        page: "",
+        page: '',
+        label: "Home"
     },
     {
-        label: "Project",
-        page: "project",
+        page: 'project',
+        label: 'Project'
     },
     {
-        label: "About",
-        page: "about"
-    },
-    {
-        label: "CountriesApp",
-        page: "countries"
+        page: 'about',
+        label: 'About'
     }
- ]
+]
 const NavBar = () => {
-    const [ navBar, setNavBar ] = useState(false)
-    const { theme, systemTheme, setTheme } = useTheme()
+    const { setTheme,theme, systemTheme} = useTheme()
     const currentTheme = theme === "system" ? systemTheme : theme
+    const [ navBar, setNavBar ] = useState(false)
   return (
-    <header className='w-full px-3 py-3 z-10 mx-auto fixed top-0 border-b border-b-slate-300 shadow dark:bg-slate-900 dark:border-slate-600'>
-        <div className='flex justify-between'>
-            <div>
-                <h2>Jose Quijije</h2>
-            </div>
-            <div>
-            <button onClick={() => setNavBar(!navBar)} className="md:hidden">{navBar ? (<IoMdClose/>) : (<IoMdMenu/>)}</button>
-                <div className={` space-x-3  md:block ${navBar ? "block" : "hidden"} `}>{Nav_Items.map((item, idx) => {return (<Link href={item.page}>{item.label}</Link>)})}
+    <header>
+        <div className='flex justify-between dark:text-white'>
+            
+                <div>
+                    <h2>Jose Quijije</h2>
                 </div>
-                <div className='block'>{currentTheme === "dark" ? (<button onClick={() => setTheme("light")}><RiMoonFill/></button>) : (<button onClick={() => setTheme("dark")}><RiSunLine/></button>)}</div>
+                <button className='block md:hidden' onClick={() => setNavBar(!navBar)}>{ navBar ? (<IoMdClose/>) : (<IoMdMenu/>)}</button>
+            
+            <div>
+                <div className='md:block inline-flex'>
+                    
+                        <div className={`md:flex gap- ${navBar ? 'block' : 'hidden'}`}>
+                            {NAv_Items.map((id) => { return (
+                                <Link className='mx-1' href={id.page}>{id.label}</Link>
+                            )})}
+                        </div>
+                    
+                </div>
+                        <button>{currentTheme === 'dark' ? (<button onClick={() => setTheme('light')}><RiSunLine/></button>) : (<button onClick={() => setTheme('dark')}><RiMoonFill/></button>)}</button>
             </div>
         </div>
     </header>
