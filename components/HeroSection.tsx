@@ -58,16 +58,18 @@ const HeroSection = () => {
         <div>
             <h1>Welcome</h1>
         </div>
-        <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-            <input type="text" className='border border-cyan-900 shadow-lg' ref={inputref}/>
-            <button type='submit' className='font-semi-bold rounded cursor-pointer' >Add to list</button>
-        </form>
-        <div>
-            {todo.map((whatodo) => (
-                <ol>
-                    {whatodo}
-                </ol>
-            ))}
+        <div className='border dark:drop-shadow-[0_35px_35px_rgba(0,0,0,0.1)]'>
+            <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
+                <input type="text" className='border border-cyan-900 shadow-lg' ref={inputref}/>
+                <button type='submit' className='font-semi-bold rounded cursor-pointer' >Add to list</button>
+            </form>
+            <div>
+                {todo.map((whatodo) => (
+                    <ol>
+                        {whatodo}
+                    </ol>
+                ))}
+            </div>
         </div>
         <Peoples />
         <img src='#' id='imageup' className='w-52 h-44' ref={imageRef} />
